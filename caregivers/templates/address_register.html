@@ -1,0 +1,48 @@
+{% extends 'base_page.html' %}
+
+{% block content %}
+  <div class="container mt-4">
+    <h1>Address Register</h1>
+
+    <div class="card mt-3">
+      <div class="card-body">
+        <form method="post">
+          {% csrf_token %}
+          {{ address_form.as_p }}
+
+          <button type="submit" class="btn btn-primary btn-lg">Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    body {
+      background-color: #e7f0f7; /* Light blue background color */
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px; /* Adjust the container width as needed */
+      margin: auto;
+      background-color: #ffffff; /* White background for the form */
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle box shadow */
+    }
+
+    h1 {
+      color: #007bff; /* Set your desired heading color */
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    button {
+      margin-top: 10px;
+      font-size: 18px; /* Increase button font size */
+    }
+  </style>
+
+{% endblock %}

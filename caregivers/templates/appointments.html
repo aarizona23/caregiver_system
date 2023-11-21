@@ -1,0 +1,27 @@
+{% extends 'base_page.html' %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <div class="row">
+        <div>
+            <div class="mb-2">
+                <h1>My Appointments</h1>
+            </div>
+            <ul>
+                {% if results %}
+                    {% for result in results %}
+                        <div class="user-details border p-3 mb-3">
+                            <strong>Appointment date:</strong> {{ result.appointment_date }}<br>
+                            <strong>Appointment time:</strong> {{ result.appointment_time }}<br>
+                            <strong>Work hours:</strong> {{ result.work_hours }}<br>
+                            <strong>Status:</strong> {{ result.status }}<br>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="alert alert-warning">No results found.</p>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

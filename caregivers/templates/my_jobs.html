@@ -1,0 +1,35 @@
+{% extends 'base_page.html' %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <div class="row">
+        <div>
+            <div class="mb-2"> <!-- Add a margin to separate "hello" from the form -->
+                <h1>All Jobs</h1>
+            </div>
+            <ul>
+                {% for job in jobs %}
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <strong>Required caregiving type:</strong> {{ job.required_caregiving_type }}
+                            </div>
+                            <div class="col-md-3">
+                                <strong>Other requirements:</strong> {{ job.other_requirements }}
+                            </div>
+                            <div class="col-md-3">
+                                <strong>Date posted:</strong> {{ job.date_posted }}
+                            </div>
+                            <div class="col-md-3">
+                                <a class="btn btn-outline-info my-2 my-sm-0" href="{% url 'applicants' job.job_id %}">View applicants</a>
+                            </div>
+                        </div>
+                    </li>
+                {% empty %}
+                    <li>No jobs exist.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

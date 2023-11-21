@@ -1,0 +1,29 @@
+{% extends 'base_page.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Caregiver Profile</h1>
+        {% load static %}
+
+        <div class="profile-image text-center">
+            <img src="{% if caregiver.image %}{{ caregiver.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}" alt="Image Alt Text" class="img-fluid rounded" width="300" height="400">
+        </div>
+
+        <div class="profile-details mt-4">
+            <p><strong>Name:</strong> {{ given_name }} {{ surname }}</p>
+            <p><strong>Phone Number:</strong> {{ phone }}</p>
+            <p><strong>Caregiving Type:</strong> {{ caregiver.caregiving_type }}</p>
+            <p><strong>Hourly Rate:</strong> ${{ caregiver.hourly_rate }}</p>
+        </div>
+
+        <ul class="nav mt-4">
+            <li class="nav-item">
+                <a class="nav-link btn btn-outline-primary" href="{% url 'view_jobs' %}">View Jobs</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn btn-outline-primary" href="{% url 'caregiver_appointments' %}">My Appointments</a>
+            </li>
+            <!-- Add more buttons as needed -->
+        </ul>
+    </div>
+{% endblock %}

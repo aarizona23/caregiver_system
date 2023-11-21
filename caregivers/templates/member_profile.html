@@ -1,0 +1,23 @@
+{% extends 'base_page.html' %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h1>Family Member Profile</h1>
+        
+        <div class="card mt-3">
+            <div class="card-body">
+                <h5 class="card-title">Name: {{ given_name }} {{ surname }}</h5>
+                <p class="card-text">Phone Number: {{ phone }}</p>
+                <p class="card-text">House Rules: {{ member.house_rules }}</p>
+                <!-- Add more family member details here -->
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <a class="btn btn-primary" href="{% url 'create_job' member.member_user_id %}">Create Job</a>
+            <a class="btn btn-primary" href="{% url 'search_caregiver' %}">Search for Caregiver</a>
+            <a class="btn btn-primary" href="{% url 'appointments' %}">My Appointments</a>
+            <a class="btn btn-primary" href="{% url 'applications' %}">Applications to Job</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base_page.html' %}
+
+{% block content %}
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-8"> <!-- Increased the column width for job results -->
+            <div class="mb-2">
+                <h1>All Jobs</h1>
+            </div>
+            <form class="form-inline my-2 my-lg-0" method="get" action="{% url 'view_jobs' %}">
+                {% csrf_token %}
+                
+                <div class="form-group mx-sm-2">
+                    <label for="q">Search:</label>
+                    {{ jobs_search_form.q }}
+                </div>
+                
+                <div class="form-group mx-sm-2">
+                    <label for="required_caregiving_type">Caregiving Type:</label>
+                    {{ jobs_search_form.required_caregiving_type }}
+                </div>
+                
+                <div class="form-group mx-sm-2">
+                    <label for="other_requirements">Other Requirements:</label>
+                    {{ jobs_search_form.other_requirements }}
+                </div>
+                
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>            
+            
+            <ul class="list-group">
+                {% for job in jobs %}
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <strong>Required caregiving type:</strong> {{ job.required_caregiving_type }}
+                            </div>
+                            <div class="col-md-6"> <!-- Increased the column width for job details -->
+                                <strong>Other requirements:</strong> {{ job.other_requirements }}
+                            </div>
+                            <div class="col-md-3">
+                                <strong>Date posted:</strong> {{ job.date_posted }}
+                            </div>
+                            <div class="col-md-12 mt-2"> <!-- Added a margin for the "Apply to Job" button -->
+                                <a class="btn btn-outline-info" href="{% url 'apply_job' job.job_id %}">Apply to Job</a>
+                            </div>
+                        </div>
+                    </li>
+                {% empty %}
+                    <li class="list-group-item">No jobs exist.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

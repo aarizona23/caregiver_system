@@ -1,0 +1,11 @@
+<!-- templates/job_detail.html -->
+
+{% extends 'base_page.html' %}
+
+{% block content %}
+    <h1>Job Detail</h1>
+    <p>Required Caregiving Type: {{ job.required_caregiving_type }}</p>
+    <p>Other Requirements: {{ job.other_requirements }}</p>
+    <p>Date Posted: {{ job.date_posted }}</p>
+    <!-- Add more job details here -->
+{% endblock %}

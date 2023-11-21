@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Custom style for the logout button */
+    .logout-btn {
+      font-size: 14px; /* Adjust the font size as needed */
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+    }
+  </style>
+</head>
+<body>
+    {% block content %}
+    {% endblock %}
+    <a class="nav-link btn btn-outline-primary logout-btn" href="{% url 'logout' %}">Logout</a>
+</body>
+</html>

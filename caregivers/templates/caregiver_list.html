@@ -1,0 +1,33 @@
+{% extends 'base_page.html' %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <div class="row">
+        <div>
+            <div class="mb-2">
+                <h1>All Caregivers</h1>
+            </div>
+            <form class="form-inline my-2 my-lg-0" method="get" action="{% url 'search_caregiver' %}">
+                <label class="mr-sm-2" for="q">Caregiver Search:</label>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <ul>
+                {% if results %}
+                    {% for caregiver in results %}
+                        <div class="user-details border p-3 mb-3">
+                            <strong>Name:</strong> {{ caregiver.caregiver_user.given_name }} {{ caregiver.caregiver_user.surname }}<br>
+                            <strong>Email:</strong> {{ caregiver.caregiver_user.email }}<br>
+                            <strong>Phone number:</strong> {{ caregiver.caregiver_user.phone_number }}<br>
+                            <a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'make_appointment' caregiver.caregiver_user_id %}">Make appointment</a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="alert alert-warning">No results found.</p>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
